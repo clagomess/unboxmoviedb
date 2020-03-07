@@ -11,7 +11,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 public class OAuth2ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.resourceId("unboxmoviedb");
+        resources
+                .stateless(false)
+                .resourceId("unboxmoviedb");
     }
 
     @Override
