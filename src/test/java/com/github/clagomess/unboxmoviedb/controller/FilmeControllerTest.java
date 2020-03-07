@@ -50,6 +50,6 @@ public class FilmeControllerTest {
 
         val response = result.getResponse().getContentAsString();
         log.info("{}", response);
-        Assertions.assertEquals(200, result.getResponse().getStatus());
+        Assertions.assertEquals(204, result.getResponse().getStatus());
     }
 }
