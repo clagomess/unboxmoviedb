@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -37,4 +38,8 @@ public class Filme {
     @JsonProperty("status")
     @Column(name = "sit_filme", nullable = false)
     private String sitFilme;
+
+    @JsonProperty("production_companies")
+    @OneToMany(mappedBy = "filme")
+    private List<FilmeProdutora> produtoraList;
 }

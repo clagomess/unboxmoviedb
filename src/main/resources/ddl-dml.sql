@@ -29,6 +29,8 @@ create table tbl_filme_produtora (
 
 alter table tbl_filme_produtora ADD CONSTRAINT pk_filme_produtora PRIMARY KEY ( seq_filme_produtora );
 
+alter table tbl_filme_produtora ADD CONSTRAINT fk_filpro_filme FOREIGN KEY ( seq_filme ) REFERENCES tbl_filme ( seq_filme );
+
 -- SEQUENCES
 CREATE SEQUENCE seq_usuario START WITH 1;
 CREATE SEQUENCE seq_filme START WITH 1;
@@ -48,3 +50,6 @@ insert into tbl_filme (
 
 insert into tbl_filme_produtora (seq_filme_produtora, seq_filme, nom_produtora, sgl_pais)
 values ( nextval('seq_filme_produtora'), currval('seq_filme'), 'Regency Enterprises', 'US');
+
+insert into tbl_filme_produtora (seq_filme_produtora, seq_filme, nom_produtora, sgl_pais)
+values ( nextval('seq_filme_produtora'), currval('seq_filme'), 'Taurus Film', 'DE');
