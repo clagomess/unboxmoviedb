@@ -1,5 +1,8 @@
 package com.github.clagomess.unboxmoviedb.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.clagomess.unboxmoviedb.dto.filme.FilmeVotoDto;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
@@ -14,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+@Slf4j
 @SpringBootTest
 @AutoConfigureMockMvc
 public class FilmeControllerTest {
@@ -32,5 +36,20 @@ public class FilmeControllerTest {
         val response = result.getResponse().getContentAsString();
 
         MatcherAssert.assertThat(response, CoreMatchers.containsString("original_title"));
+    }
+
+    @Test
+    @WithMockUser(value = "usuario-unit")
+    public void voto() throws Exception {
+        String json = new ObjectMapper().writeValueAsString(new FilmeVotoDto(1L, 10.0));
+
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.post("/movie/rating")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json)
+        ).andReturn();
+
+        val response = result.getResponse().getContentAsString();
+        log.info("{}", response);
+        Assertions.assertEquals(200, result.getResponse().getStatus());
     }
 }

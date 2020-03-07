@@ -22,4 +22,21 @@ public class FilmeService {
 
         return filme;
     }
+
+    public void manterVoto(Long seqFilme, Double vlrVoto) throws Exception {
+        // validar
+        if(vlrVoto > 10.0){
+            throw new Exception("Valor do voto deve estar entre 0 e 10");
+        }
+
+        if(!filmeRepository.existsById(seqFilme)){
+            throw new Exception("Filme não encontrado");
+        }
+
+        val filme = filmeRepository.findFilmeParaCalculoVoto(seqFilme);
+        long novoNumVoto = filme.getNumVoto() + 1;
+        Double novoNumVotoMedia = (filme.getNumVotoMedia() * filme.getNumVoto() + vlrVoto) / novoNumVoto;
+
+        filmeRepository.setFilmeVoto(novoNumVoto, novoNumVotoMedia, seqFilme);
+    }
 }

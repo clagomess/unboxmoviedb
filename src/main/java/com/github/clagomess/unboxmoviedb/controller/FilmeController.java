@@ -1,12 +1,12 @@
 package com.github.clagomess.unboxmoviedb.controller;
 
+import com.github.clagomess.unboxmoviedb.dto.filme.FilmeVotoDto;
 import com.github.clagomess.unboxmoviedb.entity.Filme;
 import com.github.clagomess.unboxmoviedb.service.FilmeService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/movie")
@@ -19,5 +19,11 @@ public class FilmeController {
             @PathVariable("seqFilme") Long seqFilme
     ) throws Exception {
         return filmeService.findById(seqFilme);
+    }
+
+    @PostMapping("rating")
+    public ResponseEntity<?> voto(@RequestBody FilmeVotoDto dto) throws Exception {
+        filmeService.manterVoto(dto.getMovieId(), dto.getValue());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

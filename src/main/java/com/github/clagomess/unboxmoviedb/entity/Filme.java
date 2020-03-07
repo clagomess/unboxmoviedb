@@ -42,4 +42,9 @@ public class Filme {
     @JsonProperty("production_companies")
     @OneToMany(mappedBy = "filme")
     private List<FilmeProdutora> produtoraList;
+
+    public Filme(Long numVoto, Double numVotoMedia){
+        this.numVoto = numVoto;
+        this.numVotoMedia = numVotoMedia;
+    }
 }
