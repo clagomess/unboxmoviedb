@@ -18,17 +18,19 @@ public class FilmeServiceTest {
         val filme = filmeService.findById(1L);
 
         Assertions.assertNotNull(filme);
-        Assertions.assertEquals(2, filme.getProdutoraList().size());
+        Assertions.assertFalse(filme.getProdutoraList().isEmpty());
     }
 
     @Test
     public void manterVoto() throws Exception {
+        val filmeAntes = filmeService.findFilmeParaCalculoVoto(1L);
+
         filmeService.manterVoto(1L, 10.0);
 
-        val filme = filmeService.findById(1L);
+        val filmeDepois = filmeService.findFilmeParaCalculoVoto(1L);
 
-        Assertions.assertEquals(18277, filme.getNumVoto());
-        Assertions.assertEquals(8.4, filme.getNumVotoMedia());
+        Assertions.assertEquals(filmeAntes.getNumVoto() + 1, filmeDepois.getNumVoto());
+        Assertions.assertEquals(8.4, filmeDepois.getNumVotoMedia());
     }
 
     @Test

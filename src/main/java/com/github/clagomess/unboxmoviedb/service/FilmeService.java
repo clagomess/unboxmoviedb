@@ -23,6 +23,10 @@ public class FilmeService {
         return filme;
     }
 
+    public Filme findFilmeParaCalculoVoto(Long seqFilme) throws Exception {
+        return filmeRepository.findFilmeParaCalculoVoto(seqFilme);
+    }
+
     public void manterVoto(Long seqFilme, Double vlrVoto) throws Exception {
         // validar
         if(vlrVoto > 10.0){

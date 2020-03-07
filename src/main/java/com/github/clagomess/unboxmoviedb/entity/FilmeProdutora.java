@@ -1,6 +1,7 @@
 package com.github.clagomess.unboxmoviedb.entity;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -32,4 +33,16 @@ public class FilmeProdutora {
     @JsonProperty("origin_country")
     @Column(name = "sgl_pais", nullable = false)
     private String sglPais;
+
+    @Transient
+    @JsonProperty("movie_id")
+    private Long getSeqFilme(){
+        return filme != null ? filme.getSeqFilme() : null;
+    }
+
+    @Transient
+    @JsonProperty("movie_id")
+    private void setSeqFilme(Long seqFilme){
+        filme = new Filme(seqFilme);
+    }
 }
