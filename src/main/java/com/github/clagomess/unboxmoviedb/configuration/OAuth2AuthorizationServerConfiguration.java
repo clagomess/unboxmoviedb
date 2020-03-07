@@ -1,7 +1,7 @@
 package com.github.clagomess.unboxmoviedb.configuration;
 
 import com.github.clagomess.unboxmoviedb.service.UnboxMovieDbUserDetailsService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,21 +18,23 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 
 @Configuration
 @EnableAuthorizationServer
-@AllArgsConstructor
 public class OAuth2AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+    @Autowired
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
+
+    @Autowired
     private UnboxMovieDbUserDetailsService userDetailsService;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private TokenStore tokenStore(){
-        return new InMemoryTokenStore();
-    }
+    private TokenStore tokenStore = new InMemoryTokenStore();
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
-                .tokenStore(tokenStore())
+                .tokenStore(tokenStore)
                 .authenticationManager(this.authenticationManager)
                 .userDetailsService(userDetailsService);
     }
@@ -54,7 +56,7 @@ public class OAuth2AuthorizationServerConfiguration extends AuthorizationServerC
     public DefaultTokenServices tokenServices() {
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setSupportRefreshToken(true);
-        tokenServices.setTokenStore(tokenStore());
+        tokenServices.setTokenStore(tokenStore);
         return tokenServices;
     }
 }
