@@ -47,4 +47,8 @@ public class Filme {
         this.numVoto = numVoto;
         this.numVotoMedia = numVotoMedia;
     }
+
+    public Filme(Long seqFilme){
+        this.seqFilme = seqFilme;
+    }
 }
