@@ -1,10 +1,12 @@
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:file:./target/unboxmoviedb;MODE=POSTGRESQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:file:./target/unboxmoviedb;MODE=POSTGRESQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT FROM './target/classes/ddl-dml.sql'
   jpa:
     show-sql: true
     database: h2
+    hibernate:
+      ddl-auto: none
 
 security:
   oauth2:
