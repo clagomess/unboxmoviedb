@@ -27,7 +27,7 @@ public class FilmeProdutoraServiceTest {
         val entity = new FilmeProdutora();
         entity.setFilme(new Filme(1L));
         entity.setNome(RandomStringUtils.randomAlphanumeric(10));
-        entity.setSglPais(RandomStringUtils.randomAlphanumeric(2).toUpperCase());
+        entity.setSglPais("BR");
 
         filmeProdutoraService.save(entity);
 

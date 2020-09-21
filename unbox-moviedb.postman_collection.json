@@ -67,7 +67,10 @@
 							"value": "010203",
 							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "http://localhost:8080/oauth/token",
@@ -174,7 +177,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"value\":10.0,\"movie_id\":2}",
+					"raw": "{\"value\":11.0,\"movie_id\":1}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -323,7 +326,7 @@
 			"response": []
 		},
 		{
-			"name": "/production-companies Copy",
+			"name": "/production-companies",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -340,8 +343,8 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {

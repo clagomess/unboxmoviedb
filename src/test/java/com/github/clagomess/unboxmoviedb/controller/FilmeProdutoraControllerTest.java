@@ -46,18 +46,18 @@ public class FilmeProdutoraControllerTest {
         val entity = new FilmeProdutora();
         entity.setFilme(new Filme(1L));
         entity.setNome(RandomStringUtils.randomAlphanumeric(10));
-        entity.setSglPais(RandomStringUtils.randomAlphanumeric(2).toUpperCase());
+        entity.setSglPais("BR");
 
         String json = new ObjectMapper().writeValueAsString(entity);
 
-        MvcResult result = mvc.perform(MockMvcRequestBuilders.put("/production-companies")
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.post("/production-companies")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json)
         ).andReturn();
 
         val response = result.getResponse().getContentAsString();
         log.info("{}", response);
-        Assertions.assertEquals(200, result.getResponse().getStatus());
+        Assertions.assertEquals(201, result.getResponse().getStatus());
         MatcherAssert.assertThat(response, CoreMatchers.containsString("movie_id"));
         MatcherAssert.assertThat(response, CoreMatchers.containsString(entity.getNome()));
     }
@@ -69,11 +69,11 @@ public class FilmeProdutoraControllerTest {
         entity.setIdFilmeProdutora(1L);
         entity.setFilme(new Filme(1L));
         entity.setNome(RandomStringUtils.randomAlphanumeric(10));
-        entity.setSglPais(RandomStringUtils.randomAlphanumeric(2).toUpperCase());
+        entity.setSglPais("BR");
 
         String json = new ObjectMapper().writeValueAsString(entity);
 
-        MvcResult result = mvc.perform(MockMvcRequestBuilders.post("/production-companies")
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.put("/production-companies")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json)
         ).andReturn();

@@ -4,9 +4,12 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/6b990a706be74a9c87ba8955bf833953)](https://www.codacy.com/app/clagomess/unboxmoviedb?utm_source=github.com&utm_medium=referral&utm_content=clagomess/unboxmoviedb&utm_campaign=Badge_Coverage)
 ![Java CI](https://github.com/clagomess/unboxmoviedb/workflows/Java%20CI/badge.svg?branch=master)
 
-## Build
-- `mvn clean compile package`
+## Build & Run
+Opção 1:
 - `mvn spring-boot:run`
+
+Opção 2:
+- `docker-compose up`
 
 ## Uso
 ### Swagger UI
