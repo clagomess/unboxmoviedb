@@ -26,14 +26,14 @@ public class FilmeProdutoraServiceTest {
     public void inserir() throws Exception {
         val entity = new FilmeProdutora();
         entity.setFilme(new Filme(1L));
-        entity.setNomProdutora(RandomStringUtils.randomAlphanumeric(10));
+        entity.setNome(RandomStringUtils.randomAlphanumeric(10));
         entity.setSglPais(RandomStringUtils.randomAlphanumeric(2).toUpperCase());
 
         filmeProdutoraService.save(entity);
 
-        Assertions.assertNotNull(entity.getSeqFilmeProdutora());
-        this.seqFilmeProdutora = entity.getSeqFilmeProdutora();
-        this.nomProdutora = entity.getNomProdutora();
+        Assertions.assertNotNull(entity.getIdFilmeProdutora());
+        this.seqFilmeProdutora = entity.getIdFilmeProdutora();
+        this.nomProdutora = entity.getNome();
     }
 
     @Test
@@ -41,13 +41,13 @@ public class FilmeProdutoraServiceTest {
         val entity = filmeProdutoraService.findById(this.seqFilmeProdutora);
 
         Assertions.assertNotNull(entity);
-        Assertions.assertEquals(nomProdutora, entity.getNomProdutora());
+        Assertions.assertEquals(nomProdutora, entity.getNome());
     }
 
     @Test
     public void alterar() throws Exception {
         val entity = filmeProdutoraService.findById(this.seqFilmeProdutora);
-        entity.setNomProdutora("Globo");
+        entity.setNome("Globo");
 
         filmeProdutoraService.save(entity);
     }

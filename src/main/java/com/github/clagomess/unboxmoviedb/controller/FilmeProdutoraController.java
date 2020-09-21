@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/production-companies")
 @AllArgsConstructor
 public class FilmeProdutoraController {
-    private FilmeProdutoraService filmeProdutoraService;
+    private final FilmeProdutoraService filmeProdutoraService;
 
     @GetMapping("{seqFilmeProdutora}")
     public FilmeProdutora findById(
@@ -24,7 +24,7 @@ public class FilmeProdutoraController {
 
     @PutMapping
     public FilmeProdutora insert(@RequestBody FilmeProdutora entity) throws Exception {
-        entity.setSeqFilmeProdutora(null);
+        entity.setIdFilmeProdutora(null);
         return filmeProdutoraService.save(entity);
     }
 

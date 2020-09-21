@@ -14,11 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @AllArgsConstructor
 public class UnboxMovieDbUserDetailsService implements UserDetailsService {
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findByDesEmail(username);
+        Usuario usuario = usuarioRepository.findByEmail(username);
 
         if (usuario == null) {
             throw new UsernameNotFoundException(String.format("Usuário <%s> não existe!", username));

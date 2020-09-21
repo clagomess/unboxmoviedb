@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FilmeRepository extends JpaRepository<Filme, Long> {
-    @Query("select new Filme(e.numVoto, e.numVotoMedia) from Filme e where e.seqFilme = ?1")
+    @Query("select new Filme(e.qtdVoto, e.mediaVoto) from Filme e where e.idFilme = ?1")
     Filme findFilmeParaCalculoVoto(Long seqFilme);
 
     @Modifying
-    @Query("update Filme e set e.numVoto = ?1, e.numVotoMedia = ?2 where e.seqFilme = ?3")
+    @Query("update Filme e set e.qtdVoto = ?1, e.mediaVoto = ?2 where e.idFilme = ?3")
     int setFilmeVoto(Long numVoto, Double numVotoMedia, Long seqFilme);
 }

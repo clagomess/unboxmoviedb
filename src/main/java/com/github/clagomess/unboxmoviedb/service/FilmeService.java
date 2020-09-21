@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @AllArgsConstructor
 public class FilmeService {
-    private FilmeRepository filmeRepository;
+    private final FilmeRepository filmeRepository;
 
     public Filme findById(Long seqFilme) throws Exception {
         val filme = filmeRepository.findById(seqFilme).orElse(null);
@@ -38,8 +38,8 @@ public class FilmeService {
         }
 
         val filme = filmeRepository.findFilmeParaCalculoVoto(seqFilme);
-        long novoNumVoto = filme.getNumVoto() + 1;
-        Double novoNumVotoMedia = (filme.getNumVotoMedia() * filme.getNumVoto() + vlrVoto) / novoNumVoto;
+        long novoNumVoto = filme.getQtdVoto() + 1;
+        Double novoNumVotoMedia = (filme.getMediaVoto() * filme.getQtdVoto() + vlrVoto) / novoNumVoto;
 
         filmeRepository.setFilmeVoto(novoNumVoto, novoNumVotoMedia, seqFilme);
     }

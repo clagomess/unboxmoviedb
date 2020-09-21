@@ -18,7 +18,7 @@ public class FilmeServiceTest {
         val filme = filmeService.findById(1L);
 
         Assertions.assertNotNull(filme);
-        Assertions.assertFalse(filme.getProdutoraList().isEmpty());
+        Assertions.assertFalse(filme.getProdutoras().isEmpty());
     }
 
     @Test
@@ -29,8 +29,8 @@ public class FilmeServiceTest {
 
         val filmeDepois = filmeService.findFilmeParaCalculoVoto(1L);
 
-        Assertions.assertEquals(filmeAntes.getNumVoto() + 1, filmeDepois.getNumVoto());
-        Assertions.assertEquals(8.4, filmeDepois.getNumVotoMedia());
+        Assertions.assertEquals(filmeAntes.getQtdVoto() + 1, filmeDepois.getQtdVoto());
+        Assertions.assertEquals(8.4, filmeDepois.getMediaVoto());
     }
 
     @Test

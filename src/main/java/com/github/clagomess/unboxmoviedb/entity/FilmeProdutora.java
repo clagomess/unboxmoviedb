@@ -18,7 +18,7 @@ public class FilmeProdutora {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_filme_produtora")
     @SequenceGenerator(name = "seq_filme_produtora", sequenceName = "seq_filme_produtora", allocationSize = 1)
     @JsonProperty("id")
-    private Long seqFilmeProdutora;
+    private Long idFilmeProdutora;
 
     @ToString.Exclude
     @JsonIgnore
@@ -28,7 +28,7 @@ public class FilmeProdutora {
 
     @JsonProperty("name")
     @Column(name = "nom_produtora", nullable = false)
-    private String nomProdutora;
+    private String nome;
 
     @JsonProperty("origin_country")
     @Column(name = "sgl_pais", nullable = false)
@@ -37,7 +37,7 @@ public class FilmeProdutora {
     @Transient
     @JsonProperty("movie_id")
     private Long getSeqFilme(){
-        return filme != null ? filme.getSeqFilme() : null;
+        return filme != null ? filme.getIdFilme() : null;
     }
 
     @Transient

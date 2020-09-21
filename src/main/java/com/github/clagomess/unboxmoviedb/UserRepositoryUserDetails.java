@@ -18,12 +18,12 @@ public class UserRepositoryUserDetails extends Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-        return super.getDesSenha();
+        return super.getSenha();
     }
 
     @Override
     public String getUsername() {
-        return super.getDesEmail();
+        return super.getEmail();
     }
 
     @Override

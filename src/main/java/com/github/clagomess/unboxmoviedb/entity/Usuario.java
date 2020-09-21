@@ -14,17 +14,17 @@ public class Usuario {
     @Column(name = "seq_usuario", nullable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
     @SequenceGenerator(name = "seq_usuario", sequenceName = "seq_usuario", allocationSize = 1)
-    private Long seqUsuario;
+    private Long idUsuario;
 
     @Column(name = "des_email", nullable = false)
-    private String desEmail;
+    private String email;
 
     @Column(name = "des_senha", nullable = false)
-    private String desSenha;
+    private String senha;
 
     public Usuario(Usuario usuario){
-        this.desEmail = usuario.desEmail;
-        this.desSenha = usuario.desSenha;
-        this.seqUsuario = usuario.seqUsuario;
+        this.email = usuario.email;
+        this.senha = usuario.senha;
+        this.idUsuario = usuario.idUsuario;
     }
 }

@@ -45,7 +45,7 @@ public class FilmeProdutoraControllerTest {
     public void insert() throws Exception {
         val entity = new FilmeProdutora();
         entity.setFilme(new Filme(1L));
-        entity.setNomProdutora(RandomStringUtils.randomAlphanumeric(10));
+        entity.setNome(RandomStringUtils.randomAlphanumeric(10));
         entity.setSglPais(RandomStringUtils.randomAlphanumeric(2).toUpperCase());
 
         String json = new ObjectMapper().writeValueAsString(entity);
@@ -59,16 +59,16 @@ public class FilmeProdutoraControllerTest {
         log.info("{}", response);
         Assertions.assertEquals(200, result.getResponse().getStatus());
         MatcherAssert.assertThat(response, CoreMatchers.containsString("movie_id"));
-        MatcherAssert.assertThat(response, CoreMatchers.containsString(entity.getNomProdutora()));
+        MatcherAssert.assertThat(response, CoreMatchers.containsString(entity.getNome()));
     }
 
     @Test
     @WithMockUser(value = "usuario-unit")
     public void update() throws Exception {
         val entity = new FilmeProdutora();
-        entity.setSeqFilmeProdutora(1L);
+        entity.setIdFilmeProdutora(1L);
         entity.setFilme(new Filme(1L));
-        entity.setNomProdutora(RandomStringUtils.randomAlphanumeric(10));
+        entity.setNome(RandomStringUtils.randomAlphanumeric(10));
         entity.setSglPais(RandomStringUtils.randomAlphanumeric(2).toUpperCase());
 
         String json = new ObjectMapper().writeValueAsString(entity);
@@ -82,7 +82,7 @@ public class FilmeProdutoraControllerTest {
         log.info("{}", response);
         Assertions.assertEquals(200, result.getResponse().getStatus());
         MatcherAssert.assertThat(response, CoreMatchers.containsString("movie_id"));
-        MatcherAssert.assertThat(response, CoreMatchers.containsString(entity.getNomProdutora()));
+        MatcherAssert.assertThat(response, CoreMatchers.containsString(entity.getNome()));
     }
 
     @Test

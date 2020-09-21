@@ -19,9 +19,9 @@ public class FilmeRepositoryTest {
         val filme = filmeRepository.findFilmeParaCalculoVoto(1L);
 
         Assertions.assertNotNull(filme);
-        Assertions.assertNull(filme.getSeqFilme());
-        Assertions.assertEquals(8.4, filme.getNumVotoMedia());
-        Assertions.assertTrue(filme.getNumVoto() > 0);
+        Assertions.assertNull(filme.getIdFilme());
+        Assertions.assertEquals(8.4, filme.getMediaVoto());
+        Assertions.assertTrue(filme.getQtdVoto() > 0);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class FilmeRepositoryTest {
 
         val filme = filmeRepository.findById(1L).orElse(new Filme());
 
-        Assertions.assertEquals(3L, filme.getNumVoto());
-        Assertions.assertEquals(10.0, filme.getNumVotoMedia());
+        Assertions.assertEquals(3L, filme.getQtdVoto());
+        Assertions.assertEquals(10.0, filme.getMediaVoto());
     }
 }
