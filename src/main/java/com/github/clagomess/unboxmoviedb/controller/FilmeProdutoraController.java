@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,7 @@ public class FilmeProdutoraController {
 
     @ApiOperation(value = "Atualiza uma produtora")
     @PutMapping
-    public FilmeProdutora update(@RequestBody FilmeProdutora entity) throws Exception {
+    public FilmeProdutora update(@RequestBody @Valid FilmeProdutora entity) throws Exception {
         entity.setIdFilmeProdutora(null);
         return filmeProdutoraService.save(entity);
     }
@@ -35,7 +36,7 @@ public class FilmeProdutoraController {
     @ApiOperation(value = "Insere uma produtora")
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity<?> insert(@RequestBody FilmeProdutora entity) throws Exception {
+    public ResponseEntity<?> insert(@RequestBody @Valid FilmeProdutora entity) throws Exception {
         val result = filmeProdutoraService.save(entity);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
