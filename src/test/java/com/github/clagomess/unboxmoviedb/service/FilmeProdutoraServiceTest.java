@@ -67,6 +67,6 @@ public class FilmeProdutoraServiceTest {
 
         log.info("{}", list);
         Assertions.assertNotNull(list);
-        Assertions.assertEquals(3, list.size());
+        Assertions.assertFalse(list.isEmpty());
     }
 }
