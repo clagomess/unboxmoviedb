@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/movie")
 @AllArgsConstructor
 public class FilmeController {
-    private FilmeService filmeService;
+    private final FilmeService filmeService;
 
     @GetMapping("{seqFilme}")
     public Filme getDetails(

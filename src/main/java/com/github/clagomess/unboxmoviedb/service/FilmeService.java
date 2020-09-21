@@ -1,6 +1,7 @@
 package com.github.clagomess.unboxmoviedb.service;
 
 import com.github.clagomess.unboxmoviedb.entity.Filme;
+import com.github.clagomess.unboxmoviedb.exception.ServiceUnboxMovieDbException;
 import com.github.clagomess.unboxmoviedb.repository.FilmeRepository;
 import lombok.AllArgsConstructor;
 import lombok.val;
@@ -17,7 +18,7 @@ public class FilmeService {
         val filme = filmeRepository.findById(seqFilme).orElse(null);
 
         if(filme == null){
-            throw new Exception("Registro não encotrado");
+            throw new ServiceUnboxMovieDbException("Registro não encotrado");
         }
 
         return filme;
@@ -30,11 +31,11 @@ public class FilmeService {
     public void manterVoto(Long seqFilme, Double vlrVoto) throws Exception {
         // validar
         if(vlrVoto > 10.0){
-            throw new Exception("Valor do voto deve estar entre 0 e 10");
+            throw new ServiceUnboxMovieDbException("Valor do voto deve estar entre 0 e 10");
         }
 
         if(!filmeRepository.existsById(seqFilme)){
-            throw new Exception("Filme não encontrado");
+            throw new ServiceUnboxMovieDbException("Filme não encontrado");
         }
 
         val filme = filmeRepository.findFilmeParaCalculoVoto(seqFilme);
@@ -42,5 +43,10 @@ public class FilmeService {
         Double novoNumVotoMedia = (filme.getMediaVoto() * filme.getQtdVoto() + vlrVoto) / novoNumVoto;
 
         filmeRepository.setFilmeVoto(novoNumVoto, novoNumVotoMedia, seqFilme);
+    }
+
+    public Filme save(Filme entity) throws Exception {
+        filmeRepository.save(entity);
+        return entity;
     }
 }
