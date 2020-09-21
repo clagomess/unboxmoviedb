@@ -23,8 +23,8 @@ jobs:
       - name: Build with Maven
         run: mvn -B compile package --file pom.xml
 
-      - uses: codacy/codacy-coverage-reporter-action@master
       - name: Run codacy-coverage-reporter
+      - uses: codacy/codacy-coverage-reporter-action@master
         with:
           project-token: a427cb5db38e48efa5a11bab4c468810
           coverage-reports: target/surefire-reports/**.xml
