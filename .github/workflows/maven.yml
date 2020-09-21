@@ -21,10 +21,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Build with Maven
-        run: mvn -B compile package --file pom.xml
+        run: mvn -B verify --file pom.xml
 
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@master
         with:
           project-token: a427cb5db38e48efa5a11bab4c468810
-          coverage-reports: target/jacoco.exec
+          coverage-reports: target/site/jacoco/jacoco.xml
