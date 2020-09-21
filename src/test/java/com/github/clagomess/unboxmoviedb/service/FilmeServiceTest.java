@@ -1,5 +1,6 @@
 package com.github.clagomess.unboxmoviedb.service;
 
+import com.github.clagomess.unboxmoviedb.dto.filme.FilmeVotoDto;
 import lombok.val;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ public class FilmeServiceTest {
     public void manterVoto() throws Exception {
         val filmeAntes = filmeService.findFilmeParaCalculoVoto(1L);
 
-        filmeService.manterVoto(1L, 10.0);
+        filmeService.manterVoto(new FilmeVotoDto(1L, 10.0));
 
         val filmeDepois = filmeService.findFilmeParaCalculoVoto(1L);
 
@@ -35,11 +36,11 @@ public class FilmeServiceTest {
 
     @Test
     public void manterVoto_vlrVoto_invalido() {
-        Assertions.assertThrows(Exception.class, () -> filmeService.manterVoto(1L, 11.0));
+        Assertions.assertThrows(Exception.class, () -> filmeService.manterVoto(new FilmeVotoDto(1L, 11.0)));
     }
 
     @Test
     public void manterVoto_filme_inexistente() {
-        Assertions.assertThrows(Exception.class, () -> filmeService.manterVoto(60L, 10.0));
+        Assertions.assertThrows(Exception.class, () -> filmeService.manterVoto(new FilmeVotoDto(60L, 10.0)));
     }
 }

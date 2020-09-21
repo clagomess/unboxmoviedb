@@ -23,7 +23,7 @@ public class FilmeController {
 
     @PostMapping("rating")
     public ResponseEntity<?> voto(@RequestBody FilmeVotoDto dto) throws Exception {
-        filmeService.manterVoto(dto.getMovieId(), dto.getValue());
+        filmeService.manterVoto(dto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
