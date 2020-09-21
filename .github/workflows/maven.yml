@@ -24,8 +24,7 @@ jobs:
         run: mvn -B compile package --file pom.xml
 
       - name: Run codacy-coverage-reporter
-      - uses: codacy/codacy-coverage-reporter-action@master
+        uses: codacy/codacy-coverage-reporter-action@master
         with:
           project-token: a427cb5db38e48efa5a11bab4c468810
           coverage-reports: target/surefire-reports/**.xml
-        run: echo "ok"
